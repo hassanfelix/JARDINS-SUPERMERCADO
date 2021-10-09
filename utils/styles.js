@@ -61,5 +61,8 @@ const useStyles = makeStyles({
     color: '#ffffff',
     textTransform: 'initial',
   },
+  error: {
+    color: '#f04040',
+  },
 });
 export default useStyles;

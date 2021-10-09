@@ -110,7 +110,7 @@ export default function ProductScreen(props) {
                 <Button
                   fullWidth
                   variant="contained"
-                  color="secondary"
+                  color="primary"
                   onClick={addToCartHandler}
                 >
                   Adicionar ao carrinho

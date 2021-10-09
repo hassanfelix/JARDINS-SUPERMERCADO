@@ -59,7 +59,7 @@ export default function Home(props) {
                   <Button
                     size="small"
                     variant="contained"
-                    color="secondary"
+                    color="primary"
                     onClick={() => addToCartHandler(product)}
                   >
                     Adicionar ao Carrinho
