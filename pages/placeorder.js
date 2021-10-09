@@ -83,10 +83,10 @@ function PlaceOrder() {
     }
   };
   return (
-    <Layout title="Place Order">
+    <Layout title="Ordem de Compra">
       <CheckoutWizard activeStep={3}></CheckoutWizard>
       <Typography component="h1" variant="h1">
-        Place Order
+        Ordem de Compra
       </Typography>
       <Grid container spacing={1}>
         <Grid item md={9} xs={12}>
@@ -94,7 +94,7 @@ function PlaceOrder() {
             <List>
               <ListItem>
                 <Typography component="h2" variant="h2">
-                  Shipping Address
+                  Endereço de Entrega
                 </Typography>
               </ListItem>
               <ListItem>
@@ -108,7 +108,7 @@ function PlaceOrder() {
             <List>
               <ListItem>
                 <Typography component="h2" variant="h2">
-                  Payment Method
+                  Método de Pagamento
                 </Typography>
               </ListItem>
               <ListItem>{paymentMethod}</ListItem>
@@ -118,7 +118,7 @@ function PlaceOrder() {
             <List>
               <ListItem>
                 <Typography component="h2" variant="h2">
-                  Order Items
+                  Itens da Compra
                 </Typography>
               </ListItem>
               <ListItem>
@@ -126,10 +126,10 @@ function PlaceOrder() {
                   <Table>
                     <TableHead>
                       <TableRow>
-                        <TableCell>Image</TableCell>
-                        <TableCell>Name</TableCell>
-                        <TableCell align="right">Quantity</TableCell>
-                        <TableCell align="right">Price</TableCell>
+                        <TableCell>Imagem</TableCell>
+                        <TableCell>Nome</TableCell>
+                        <TableCell align="right">Quantidade</TableCell>
+                        <TableCell align="right">Preço</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -158,7 +158,7 @@ function PlaceOrder() {
                             <Typography>{item.quantity}</Typography>
                           </TableCell>
                           <TableCell align="right">
-                            <Typography>${item.price}</Typography>
+                            <Typography>R${item.price}</Typography>
                           </TableCell>
                         </TableRow>
                       ))}
@@ -173,35 +173,35 @@ function PlaceOrder() {
           <Card className={classes.section}>
             <List>
               <ListItem>
-                <Typography variant="h2">Order Summary</Typography>
+                <Typography variant="h2">Resumo da Compra</Typography>
               </ListItem>
               <ListItem>
                 <Grid container>
                   <Grid item xs={6}>
-                    <Typography>Items:</Typography>
+                    <Typography>Itens:</Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography align="right">${itemsPrice}</Typography>
+                    <Typography align="right">R${itemsPrice}</Typography>
                   </Grid>
                 </Grid>
               </ListItem>
               <ListItem>
                 <Grid container>
                   <Grid item xs={6}>
-                    <Typography>Tax:</Typography>
+                    <Typography>Taxa:</Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography align="right">${taxPrice}</Typography>
+                    <Typography align="right">R${taxPrice}</Typography>
                   </Grid>
                 </Grid>
               </ListItem>
               <ListItem>
                 <Grid container>
                   <Grid item xs={6}>
-                    <Typography>Shipping:</Typography>
+                    <Typography>Entrega:</Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography align="right">${shippingPrice}</Typography>
+                    <Typography align="right">R${shippingPrice}</Typography>
                   </Grid>
                 </Grid>
               </ListItem>
@@ -214,7 +214,7 @@ function PlaceOrder() {
                   </Grid>
                   <Grid item xs={6}>
                     <Typography align="right">
-                      <strong>${totalPrice}</strong>
+                      <strong>R${totalPrice}</strong>
                     </Typography>
                   </Grid>
                 </Grid>
@@ -226,7 +226,7 @@ function PlaceOrder() {
                   color="primary"
                   fullWidth
                 >
-                  Place Order
+                  Gerar Pedido
                 </Button>
               </ListItem>
               {loading && (

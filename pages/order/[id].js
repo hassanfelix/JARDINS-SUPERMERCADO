@@ -92,7 +92,7 @@ function Order({ params }) {
     <Layout title={`Order ${orderId}`}>
       <CheckoutWizard activeStep={3}></CheckoutWizard>
       <Typography component="h1" variant="h1">
-        Order {orderId}
+        Ordem de Compra {orderId}
       </Typography>
       {loading ? (
         <CircularProgress />
@@ -105,7 +105,7 @@ function Order({ params }) {
               <List>
                 <ListItem>
                   <Typography component="h2" variant="h2">
-                    Shipping Address
+                    Endereço de Entrega
                   </Typography>
                 </ListItem>
                 <ListItem>
@@ -114,10 +114,7 @@ function Order({ params }) {
                   {shippingAddress.country}
                 </ListItem>
                 <ListItem>
-                  Status:{' '}
-                  {isDelivered
-                    ? `delivered at ${deliveredAt}`
-                    : 'not delivered'}
+                  Status: {isDelivered ? `entregue ${deliveredAt}` : 'pendente'}
                 </ListItem>
               </List>
             </Card>
@@ -125,12 +122,12 @@ function Order({ params }) {
               <List>
                 <ListItem>
                   <Typography component="h2" variant="h2">
-                    Payment Method
+                    Método de Pagamento
                   </Typography>
                 </ListItem>
                 <ListItem>{paymentMethod}</ListItem>
                 <ListItem>
-                  Status: {isPaid ? `paid at ${paidAt}` : 'not paid'}
+                  Status: {isPaid ? `pago ${paidAt}` : 'pendente'}
                 </ListItem>
               </List>
             </Card>
@@ -138,7 +135,7 @@ function Order({ params }) {
               <List>
                 <ListItem>
                   <Typography component="h2" variant="h2">
-                    Order Items
+                    Itens da Compra
                   </Typography>
                 </ListItem>
                 <ListItem>
@@ -146,8 +143,8 @@ function Order({ params }) {
                     <Table>
                       <TableHead>
                         <TableRow>
-                          <TableCell>Image</TableCell>
-                          <TableCell>Name</TableCell>
+                          <TableCell>Imagem</TableCell>
+                          <TableCell>Nome</TableCell>
                           <TableCell align="right">Quantity</TableCell>
                           <TableCell align="right">Price</TableCell>
                         </TableRow>
@@ -179,7 +176,7 @@ function Order({ params }) {
                               <Typography>{item.quantity}</Typography>
                             </TableCell>
                             <TableCell align="right">
-                              <Typography>${item.price}</Typography>
+                              <Typography>R${item.price}</Typography>
                             </TableCell>
                           </TableRow>
                         ))}
@@ -194,35 +191,35 @@ function Order({ params }) {
             <Card className={classes.section}>
               <List>
                 <ListItem>
-                  <Typography variant="h2">Order Summary</Typography>
+                  <Typography variant="h2">Resumo da Compra</Typography>
                 </ListItem>
                 <ListItem>
                   <Grid container>
                     <Grid item xs={6}>
-                      <Typography>Items:</Typography>
+                      <Typography>Itens:</Typography>
                     </Grid>
                     <Grid item xs={6}>
-                      <Typography align="right">${itemsPrice}</Typography>
+                      <Typography align="right">R${itemsPrice}</Typography>
                     </Grid>
                   </Grid>
                 </ListItem>
                 <ListItem>
                   <Grid container>
                     <Grid item xs={6}>
-                      <Typography>Tax:</Typography>
+                      <Typography>Taxa:</Typography>
                     </Grid>
                     <Grid item xs={6}>
-                      <Typography align="right">${taxPrice}</Typography>
+                      <Typography align="right">R${taxPrice}</Typography>
                     </Grid>
                   </Grid>
                 </ListItem>
                 <ListItem>
                   <Grid container>
                     <Grid item xs={6}>
-                      <Typography>Shipping:</Typography>
+                      <Typography>Entrega:</Typography>
                     </Grid>
                     <Grid item xs={6}>
-                      <Typography align="right">${shippingPrice}</Typography>
+                      <Typography align="right">R${shippingPrice}</Typography>
                     </Grid>
                   </Grid>
                 </ListItem>
@@ -235,7 +232,7 @@ function Order({ params }) {
                     </Grid>
                     <Grid item xs={6}>
                       <Typography align="right">
-                        <strong>${totalPrice}</strong>
+                        <strong>R${totalPrice}</strong>
                       </Typography>
                     </Grid>
                   </Grid>
