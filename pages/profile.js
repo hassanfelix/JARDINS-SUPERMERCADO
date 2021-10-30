@@ -51,11 +51,15 @@ function Profile() {
       return;
     }
     try {
-      const { data } = await axios.put('/api/users/profile', {
-        name,
-        email,
-        password,
-      });
+      const { data } = await axios.put(
+        '/api/users/profile',
+        {
+          name,
+          email,
+          password,
+        },
+        { headers: { authorization: `Bearer ${userInfo.token}` } }
+      );
       dispatch({ type: 'USER_LOGIN', payload: data });
       Cookies.set('userInfo', data);
 
@@ -168,7 +172,7 @@ function Profile() {
                         rules={{
                           validate: (value) =>
                             value === '' ||
-                            value.lenght > 5 ||
+                            value.lenght > 6 ||
                             'A senha precisa ter no mínimo 6 carateres',
                         }}
                         render={({ field }) => (
@@ -197,7 +201,7 @@ function Profile() {
                         rules={{
                           validate: (value) =>
                             value === '' ||
-                            value.lenght > 5 ||
+                            value.lenght > 6 ||
                             'A confirmação de senha precisa ter no mínimo 6 carateres',
                         }}
                         render={({ field }) => (
