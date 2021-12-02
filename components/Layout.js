@@ -146,7 +146,7 @@ export default function Layout({ title, description, children }) {
               <NextLink href="/" passHref>
                 <Link>
                   <Typography className={classes.brand}>
-                    JARDINS SUPERMERCADO
+                    JARDINS SUPERMERCADOS
                   </Typography>
                 </Link>
               </NextLink>
