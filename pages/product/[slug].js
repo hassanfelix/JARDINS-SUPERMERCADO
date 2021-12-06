@@ -134,10 +134,10 @@ export default function ProductScreen(props) {
               <ListItem>
                 <Grid container>
                   <Grid item xs={6}>
-                    <Typography>Price</Typography>
+                    <Typography>Preço</Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography>${product.price}</Typography>
+                    <Typography>R${product.price}</Typography>
                   </Grid>
                 </Grid>
               </ListItem>
