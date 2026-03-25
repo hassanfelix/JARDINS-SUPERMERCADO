@@ -48,7 +48,7 @@ export default function ProductScreen(props) {
         },
         {
           headers: { authorization: `Bearer ${userInfo.token}` },
-        }
+        },
       );
       setLoading(false);
       enqueueSnackbar('Avaliação enviada com sucesso', { variant: 'success' });
@@ -137,7 +137,12 @@ export default function ProductScreen(props) {
                     <Typography>Preço</Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography>R${product.price}</Typography>
+                    <Typography>
+                      {product.price.toLocaleString('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL',
+                      })}
+                    </Typography>
                   </Grid>
                 </Grid>
               </ListItem>

@@ -112,7 +112,12 @@ function CartScreen() {
                           ))}
                         </Select>
                       </TableCell>
-                      <TableCell align="right">R${item.price}</TableCell>
+                      <TableCell align="right">
+                        {item.price.toLocaleString('pt-BR', {
+                          style: 'currency',
+                          currency: 'BRL',
+                        })}
+                      </TableCell>
                       <TableCell align="right">
                         <Button
                           variant="contained"
@@ -134,8 +139,13 @@ function CartScreen() {
                 <ListItem>
                   <Typography variant="h2">
                     Subtotal {cartItems.reduce((a, c) => a + c.quantity, 0)}{' '}
-                    items : R$
-                    {cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
+                    items:
+                    {cartItems
+                      .reduce((a, c) => a + c.quantity * c.price, 0)
+                      .toLocaleString('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL',
+                      })}
                   </Typography>
                 </ListItem>
                 <ListItem>

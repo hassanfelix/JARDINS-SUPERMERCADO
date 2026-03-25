@@ -105,7 +105,10 @@ function AdminDashboard() {
                       <Card raised>
                         <CardContent>
                           <Typography variant="h1">
-                            R${summary.ordersPrice}
+                            {summary.ordersPrice.toLocaleString('pt-BR', {
+                              style: 'currency',
+                              currency: 'BRL',
+                            })}
                           </Typography>
                           <Typography>Vendas</Typography>
                         </CardContent>

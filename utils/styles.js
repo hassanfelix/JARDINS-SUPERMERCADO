@@ -33,6 +33,9 @@ const useStyles = makeStyles((theme) => ({
       color: '#ffffff',
       marginLeft: 10,
       fontWeight: 'bolder',
+      '&:hover': {
+        backgroundColor: '#f5de15', // cor mostarda
+      },
     },
   },
   footer: {
@@ -109,6 +112,19 @@ const useStyles = makeStyles((theme) => ({
     '& span': {
       color: '#c92e12',
     },
+  },
+  productImage: {
+    width: '60%', // ocupa toda largura do card
+    height: 'auto', // altura fixa para todas as imagens
+    objectFit: 'cover', // mantém proporção e corta excesso
+    borderRadius: 4, // cantos levemente arredondados (opcional)
+    display: 'block', // remove espaços extras
+  },
+
+  productCard: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%', // garante que todos os cards tenham mesma altura
   },
 }));
 export default useStyles;

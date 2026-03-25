@@ -14,22 +14,47 @@ handler.get(async (req, res) => {
 });
 
 handler.post(async (req, res) => {
-  await db.connect();
-  const newProduct = new Product({
-    name: 'informe o nome do produto',
-    slug: 'informe uma slug-' + Math.random(),
-    image: 'images/feijao_.jpg',
-    price: 0,
-    category: 'informe a categoria',
-    brand: 'informe a marca',
-    countInStock: 0,
-    description: 'informe uma descrição',
-    rating: 4.5,
-    numReview: 7,
-  });
-  const product = await newProduct.save();
-  await db.disconnect();
-  res.send({ message: 'Produto criado', product });
+  try {
+    await db.connect();
+
+    const {
+      name,
+      price,
+      category,
+      image,
+      brand,
+      countInStock,
+      description,
+      slug,
+    } = req.body;
+
+    const newProduct = new Product({
+      name: name || 'Produto sem nome',
+      slug:
+        slug && slug.trim() !== ''
+          ? slug.trim().toLowerCase().replace(/\s+/g, '-')
+          : (name || 'Produto sem nome')
+              .trim()
+              .toLowerCase()
+              .replace(/\s+/g, '-'),
+      image: image || 'images/default.jpg',
+      // Converte preço para número, aceita vírgula ou ponto
+      price: price ? Number(price.toString().replace(',', '.')) : 0,
+      category: category || 'Sem categoria',
+      brand: brand || 'Sem marca',
+      countInStock: countInStock || 0,
+      description: description || 'Sem descrição',
+      rating: 4.5,
+      numReview: 0,
+    });
+
+    const product = await newProduct.save();
+    await db.disconnect();
+    res.send({ message: 'Produto criado', product });
+  } catch (err) {
+    await db.disconnect();
+    res.status(500).send({ message: err.message || 'Erro ao criar produto' });
+  }
 });
 
 export default handler;

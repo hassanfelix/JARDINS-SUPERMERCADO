@@ -37,7 +37,7 @@ function PlaceOrder() {
   } = state;
   const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100; // 123.456 => 123.46
   const itemsPrice = round2(
-    cartItems.reduce((a, c) => a + c.price * c.quantity, 0)
+    cartItems.reduce((a, c) => a + c.price * c.quantity, 0),
   );
   const shippingPrice = itemsPrice > 200 ? 0 : 15;
   const taxPrice = round2(itemsPrice * 0.15);
@@ -71,7 +71,7 @@ function PlaceOrder() {
           headers: {
             authorization: `Bearer ${userInfo.token}`,
           },
-        }
+        },
       );
       dispatch({ type: 'CART_CLEAR' });
       Cookies.remove('cartItems');
@@ -158,7 +158,12 @@ function PlaceOrder() {
                             <Typography>{item.quantity}</Typography>
                           </TableCell>
                           <TableCell align="right">
-                            <Typography>R${item.price}</Typography>
+                            <Typography>
+                              {item.price.toLocaleString('pt-BR', {
+                                style: 'currency',
+                                currency: 'BRL',
+                              })}
+                            </Typography>
                           </TableCell>
                         </TableRow>
                       ))}
@@ -181,7 +186,12 @@ function PlaceOrder() {
                     <Typography>Itens:</Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography align="right">R${itemsPrice}</Typography>
+                    <Typography align="right">
+                      {itemsPrice.toLocaleString('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL',
+                      })}
+                    </Typography>
                   </Grid>
                 </Grid>
               </ListItem>
@@ -191,7 +201,12 @@ function PlaceOrder() {
                     <Typography>Taxa:</Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography align="right">R${taxPrice}</Typography>
+                    <Typography align="right">
+                      {taxPrice.toLocaleString('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL',
+                      })}
+                    </Typography>
                   </Grid>
                 </Grid>
               </ListItem>
@@ -201,7 +216,12 @@ function PlaceOrder() {
                     <Typography>Entrega:</Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography align="right">R${shippingPrice}</Typography>
+                    <Typography align="right">
+                      {shippingPrice.toLocaleString('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL',
+                      })}
+                    </Typography>
                   </Grid>
                 </Grid>
               </ListItem>
@@ -214,7 +234,12 @@ function PlaceOrder() {
                   </Grid>
                   <Grid item xs={6}>
                     <Typography align="right">
-                      <strong>R${totalPrice}</strong>
+                      <strong>
+                        {totalPrice.toLocaleString('pt-BR', {
+                          style: 'currency',
+                          currency: 'BRL',
+                        })}
+                      </strong>
                     </Typography>
                   </Grid>
                 </Grid>

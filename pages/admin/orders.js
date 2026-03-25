@@ -132,7 +132,12 @@ function AdminOrders() {
                                 : 'USUÁRIO EXCLUÍDO'}
                             </TableCell>
                             <TableCell>{order.createdAt}</TableCell>
-                            <TableCell>R${order.totalPrice}</TableCell>
+                            <TableCell>
+                              {order.totalPrice.toLocaleString('pt-BR', {
+                                style: 'currency',
+                                currency: 'BRL',
+                              })}
+                            </TableCell>
                             <TableCell>
                               {order.isPaid
                                 ? `pago ${order.paidAt}`

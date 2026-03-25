@@ -127,30 +127,31 @@ function ProductEdit({ params }) {
 
     try {
       dispatch({ type: 'UPDATE_REQUEST' });
+
+      // Converte vírgula para ponto e transforma em número
+      const formattedPrice = Number(price.toString().replace(',', '.'));
+
       await axios.put(
         `/api/admin/products/${productId}`,
         {
           name,
           slug,
-          price,
+          price: formattedPrice, // aqui vai o valor correto
           category,
           image,
           brand,
           countInStock,
           description,
         },
-        { headers: { authorization: `Bearer ${userInfo.token}` } }
+        { headers: { authorization: `Bearer ${userInfo.token}` } },
       );
+
       dispatch({ type: 'UPDATE_SUCCESS' });
-      enqueueSnackbar('Produto atualizado com sucesso', {
-        variant: 'success',
-      });
+      enqueueSnackbar('Produto atualizado com sucesso', { variant: 'success' });
       router.push('/admin/products');
     } catch (err) {
       dispatch({ type: 'UPDATE_FAIL', payload: getError(err) });
-      enqueueSnackbar(getError(err), {
-        variant: 'error',
-      });
+      enqueueSnackbar(getError(err), { variant: 'error' });
     }
   };
 
@@ -261,7 +262,9 @@ function ProductEdit({ params }) {
                             label="Preço"
                             error={Boolean(errors.price)}
                             helperText={
-                              errors.price ? 'Preço é necessário' : ''
+                              errors.price
+                                ? 'Preço é necessário'
+                                : 'Use ponto para decimais, ex: 49.99'
                             }
                             {...field}
                           ></TextField>

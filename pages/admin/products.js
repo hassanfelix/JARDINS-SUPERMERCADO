@@ -102,7 +102,7 @@ function AdminProducts() {
         {},
         {
           headers: { authorization: `Bearer ${userInfo.token}` },
-        }
+        },
       );
       dispatch({ type: 'CREATE_SUCCESS' });
       enqueueSnackbar('Produto criado com sucesso', { variant: 'success' });
@@ -124,7 +124,7 @@ function AdminProducts() {
 
         {
           headers: { authorization: `Bearer ${userInfo.token}` },
-        }
+        },
       );
       dispatch({ type: 'DELETE_SUCCESS' });
       enqueueSnackbar('Produto excluído com sucesso', { variant: 'success' });
@@ -208,7 +208,12 @@ function AdminProducts() {
                               {product._id.substring(20, 24)}
                             </TableCell>
                             <TableCell>{product.name}</TableCell>
-                            <TableCell>R${product.price}</TableCell>
+                            <TableCell>
+                              {product.price.toLocaleString('pt-BR', {
+                                style: 'currency',
+                                currency: 'BRL',
+                              })}
+                            </TableCell>
                             <TableCell>{product.category}</TableCell>
                             <TableCell>{product.countInStock}</TableCell>
                             <TableCell>{product.rating}</TableCell>

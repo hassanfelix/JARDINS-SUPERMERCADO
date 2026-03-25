@@ -115,7 +115,12 @@ function OrderHistory() {
                           <TableRow key={order._id}>
                             <TableCell>{order._id.substring(20, 24)}</TableCell>
                             <TableCell>{order.createdAt}</TableCell>
-                            <TableCell>R${order.totalPrice}</TableCell>
+                            <TableCell>
+                              {order.totalPrice.toLocaleString('pt-BR', {
+                                style: 'currency',
+                                currency: 'BRL',
+                              })}
+                            </TableCell>
                             <TableCell>
                               {order.isPaid
                                 ? `pago ${order.paidAt}`
